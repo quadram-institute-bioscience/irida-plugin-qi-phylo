@@ -8,8 +8,9 @@ This project contains a fast phylogeny pipeline implemented as a plugin for the 
 
 # Required Galaxy tools
 
-* testtoolshed.g2.bx.psu.edu/repos/jdv/centrifuge/centrifuge/1.0.3
-* irida.corefacility.ca/galaxy-shed/repos/irida/bundle_collections/bundle_collection/1.0.2
+* toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1
+* testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.12
+
 
 # Building/Packaging
 
