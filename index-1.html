@@ -1,0 +1,269 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Unknown </title></head><body>
+<h1 id="irida-example-pipeline-plugin">IRIDA Example Pipeline Plugin</h1>
+<p>This project contains an example pipeline implemented as a plugin for the <a href="http://irida.ca/">IRIDA</a> bioinformatics analysis system. This can be used as a template for implementing your own pipelines within IRIDA. Please see the pipeline documentation at <a href="https://irida.corefacility.ca/documentation/developer/tools/pipelines/">https://irida.corefacility.ca/documentation/developer/tools/pipelines/</a> for more details.</p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#irida-example-pipeline-plugin">IRIDA Example Pipeline Plugin</a></li>
+<li><a href="#buildingpackaging">Building/Packaging</a><ul>
+<li><a href="#installing-irida-to-local-maven-repository">Installing IRIDA to local Maven repository</a></li>
+<li><a href="#building-the-plugin">Building the plugin</a></li>
+</ul>
+</li>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#using-as-a-template-for-developing-a-plugin">Using as a template for developing a plugin</a><ul>
+<li><a href="#1-place-necessary-pipeline-files-in-srcmainresourcesworkflows">1. Place necessary pipeline files in </a><a href="src/main/resources/workflows">src/main/resources/workflows</a><ul>
+<li><a href="#11-creating-pipeline-files">1.1. Creating pipeline files</a></li>
+<li><a href="#12-updating-pipeline-files">1.2. Updating pipeline files</a><ul>
+<li><a href="#121-modifying-irida_workflowxml">1.2.1. Modifying irida_workflow.xml</a></li>
+<li><a href="#122-modifying-messages_enproperties">1.2.2. Modifying messages_en.properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-update-srcmainjavacacorefacilitybioinformaticsiridapluginsexamplepluginjava">2. Update </a><a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePlugin.java">src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePlugin.java</a></li>
+<li><a href="#3-optional-implement-an-updater-class">3. (Optional) Implement an </a><a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePluginUpdater.java">Updater</a> class</li>
+<li><a href="#4-update-the-pomxml-file">4. Update the </a><a href="pom.xml">pom.xml</a> file<ul>
+<li><a href="#41-update-the-maven-versioninfo">4.1. Update the Maven version/info</a></li>
+<li><a href="#42-update-the-properties-sectionplugin-info">4.2. Update the properties section/plugin info</a></li>
+</ul>
+</li>
+<li><a href="#5-build-and-test">5. Build and Test</a></li>
+<li><a href="#6-distribute">6. Distribute</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="buildingpackaging">Building/Packaging</h1>
+<p>Building and packaging this code is accomplished using <a href="https://maven.apache.org/">Apache Maven</a>. However, you will first need to install <a href="http://irida.ca/">IRIDA</a> to your local Maven repository. The version of IRIDA you install will have to correspond to the version found in the <code>irida.version.compiletime</code> property in the <a href="pom.xml">pom.xml</a> file of this project. Right now, this is IRIDA version <code>19.01.3</code>.</p>
+<h2 id="installing-irida-to-local-maven-repository">Installing IRIDA to local Maven repository</h2>
+<p>To install IRIDA to your local Maven repository please do the following:</p>
+<ol>
+<li>Clone the IRIDA project</li>
+</ol>
+<p><code>bash
+git clone https://github.com/phac-nml/irida.git
+cd irida</code></p>
+<ol>
+<li>Checkout appropriate version of IRIDA</li>
+</ol>
+<p><code>bash
+git checkout 19.01.3</code></p>
+<ol>
+<li>Install IRIDA to local repository</li>
+</ol>
+<p><code>bash
+mvn clean install -DskipTests</code></p>
+<h2 id="building-the-plugin">Building the plugin</h2>
+<p>Once you've installed IRIDA as a dependency, you can proceed to building this plugin. Please run the following commands:</p>
+<p>```bash
+cd irida-plugin-example</p>
+<p>mvn clean package
+```</p>
+<p>Once complete, you should end up with a file <code>target/example-plugin-1.0-SNAPSHOT.jar</code> which can be installed as a plugin to IRIDA.</p>
+<p>If you have previously <a href="https://irida.corefacility.ca/documentation/administrator/index.html">setup IRIDA</a> before you may copy this JAR file to <code>/etc/irida/plugins</code> and restart IRIDA.  The plugin should now show up in the <strong>Analyses &gt; Pipelines</strong> section of IRIDA.</p>
+<p><img alt="example-plugin-pipeline.png" src="example-plugin-pipeline-1.png"/>  </p>
+<p>You should be able to run a pipeline with this plugin and get analysis results.</p>
+<p><img alt="example-plugin-results.png" src="example-plugin-results-1.png"/></p>
+<p>And, you should be able to save and view these results in the IRIDA metadata table.</p>
+<p><img alt="example-plugin-metadata.png" src="example-plugin-metadata-1.png"/></p>
+<h1 id="dependencies">Dependencies</h1>
+<p>The following dependencies are required in order to make use of this plugin.</p>
+<ul>
+<li><a href="http://irida.ca/">IRIDA</a> &gt;= 0.23.0</li>
+<li><a href="https://www.java.com/">Java</a> &gt;= 1.8 and <a href="https://maven.apache.org/">Maven</a> (for building)</li>
+</ul>
+<h1 id="using-as-a-template-for-developing-a-plugin">Using as a template for developing a plugin</h1>
+<p>In order to use this project as a template for developing your own pluginable pipeline there are a few places you will need to change.</p>
+<h2 id="1-place-necessary-pipeline-files-in-srcmainresourcesworkflows">1. Place necessary pipeline files in <a href="src/main/resources/workflows">src/main/resources/workflows</a></h2>
+<p>The first set of files you will need to change are those under <code>src/main/resources/workflows</code>. The structure of this directory looks like:</p>
+<p><code>workflows/
+��������� 0.1.0
+    ��������� irida_workflow_structure.ga
+    ��������� irida_workflow.xml
+    ��������� messages_en.properties</code></p>
+<ul>
+<li>The directory <code>0.1.0</code> corresponds to all files for a particular version of a pipeline (in this case <code>0.1.0</code>). Previous versions of the pipeline should each be kept in their own numbered directory (e.g., <code>0.1.0</code>, <code>0.2.0</code>) so that IRIDA can load up information about these pipelines.</li>
+<li>The file <code>irida_workflow_structure.ga</code> is a <a href="https://galaxyproject.org/">Galaxy</a> workflow file which is uploaded to a Galaxy instance by IRIDA before execution.</li>
+<li>The file <code>irida_workflow.xml</code> contains information about this particular pipeline used by IRIDA.</li>
+<li>The file <code>messages_en.properties</code> contains messages which will be displayed in the IRIDA UI.</li>
+</ul>
+<p>Please replace any existing files in this directory using the following instructions.</p>
+<h3 id="11-creating-pipeline-files">1.1. Creating pipeline files</h3>
+<p>The necessary files that go under the <code>workflows/</code> directory can be constructed manually (see the <a href="https://irida.corefacility.ca/documentation/developer/tools/pipelines/">IRIDA Pipeline development</a> documentation). However, an easier approach is to construct the files automatically using the <a href="https://github.com/phac-nml/irida-wf-ga2xml">irida-wf-ga2xml</a> software and then customize the generated files.</p>
+<p>No matter which method you use (manually constructing the pipeline files, or automatically constructing them) you will need to start out by building your Galaxy workflow. Please follow the instructions in the <a href="https://irida.corefacility.ca/documentation/developer/tools/pipelines/#galaxy-workflow-development">IRIDA Pipelines</a> documentation for how to do this. At the end, you should end up with a <code>workflow.ga</code> file exported from Galaxy, which is a JSON representation of your Galaxy workflow. Once you have this file (an example would be <a href="src/main/resources/workflows/0.1.0/irida_workflow_structure.ga">src/main/resources/workflows/0.1.0/irida_workflow_structure.ga</a>), you can run the following to automatically generate the other necessary files:</p>
+<p><code>bash
+java -jar irida-wf-ga2xml-1.0.0-SNAPSHOT-standalone.jar -n ReadInfo -t READ_INFO -W 0.1.0 -o output -i src/main/resources/workflows/0.1.0/irida_workflow_structure.ga</code></p>
+<p>The meaning of the command-line options are as follows:</p>
+<ul>
+<li><code>-n ReadInfo</code>: The <strong>name</strong> of the pipeline, stored in the <strong>irida_workflow.xml</strong> file under <code>&lt;name&gt;ReadInfo&lt;/name&gt;</code>.</li>
+<li><code>-t READ_INFO</code>: The <strong>type</strong> of the pipeline, stored in the <strong>irida_workflow.xml</strong> file under <code>&lt;analysisType&gt;READ_INFO&lt;/analysisType&gt;</code>. Corresponds to the <code>AnalysisType</code> object in the Java file listed above (<a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePlugin.java">ExamplePlugin.java</a>).</li>
+<li><code>-W 0.1.0</code>:  The <strong>version</strong> of the pipeline, stored in the <strong>irida_workflow.xml</strong> file under <code>&lt;version&gt;0.1.0&lt;/version&gt;</code>.</li>
+<li><code>-o output</code>: The directory to store all the output files.</li>
+<li><code>-i src/main/resources/workflows/0.1.0/irida_workflow_structure.ga</code>: The input Galaxy workflow file.</li>
+</ul>
+<p>Once complete, the output files will be located under <strong>output/</strong> and will look like:</p>
+<p><code>output/
+��������� ReadInfo
+    ��������� 0.1.0
+        ��������� irida_workflow_structure.ga
+        ��������� irida_workflow.xml
+        ��������� messages_en.properties</code></p>
+<p>You can directly move the <code>0.1.0</code> directory to <code>src/main/resources/workflows</code>.</p>
+<h3 id="12-updating-pipeline-files">1.2. Updating pipeline files</h3>
+<p>Once you've generated and moved your pipeline files to <code>src/main/resources/workflows</code>, you can make small adjustments to them as you see fit.</p>
+<h4 id="121-modifying-irida_workflowxml">1.2.1. Modifying <code>irida_workflow.xml</code></h4>
+<p>In particular, you may want to make adjustments to <code>irida_workflow.xml</code> to add/remove/change the parameters.  These are stored in the XML file like:</p>
+<p><code>xml
+&lt;parameters&gt;
+  &lt;parameter name="Grep1-4-invert" defaultValue="false"&gt;
+    &lt;toolParameter toolId="Grep1" parameterName="invert"/&gt;
+  &lt;/parameter&gt;
+  &lt;parameter name="Grep1-4-pattern" defaultValue="^@"&gt;
+    &lt;toolParameter toolId="Grep1" parameterName="pattern"/&gt;
+  &lt;/parameter&gt;
+  &lt;parameter name="wc_gnu-5-include_header" defaultValue="false"&gt;
+    &lt;toolParameter toolId="wc_gnu" parameterName="include_header"/&gt;
+  &lt;/parameter&gt;
+&lt;/parameters&gt;</code></p>
+<p>When loaded up in IRIDA, these will show up like:</p>
+<p><img alt="pipeline-parameters.png" src="pipeline-parameters-1.png"/></p>
+<p>You may also wish to modify the particular output files that get saved by IRIDA. These are recorded in:</p>
+<p><code>xml
+&lt;outputs&gt;
+  &lt;output name="hash.txt" fileName="hash.txt"/&gt;
+  &lt;output name="read-count.txt" fileName="read-count.txt"/&gt;
+&lt;/outputs&gt;</code></p>
+<p>The <code>fileName</code> attribute should correspond to a particular name of an output file in the <strong>*.ga</strong> workflow file (see <a href="src/main/resources/workflows/0.1.0/irida_workflow_structure.ga">irida_workflow_stucture.ga</a> or the <a href="https://irida.corefacility.ca/documentation/developer/tools/pipelines/">IRIDA Pipeline</a> documentation for more details).</p>
+<h4 id="122-modifying-messages_enproperties">1.2.2. Modifying <code>messages_en.properties</code></h4>
+<p>The file <a href="src/main/resources/workflows/0.1.0/messages_en.properties">src/main/resources/workflows/0.1.0/messages_en.properties</a> contains the text that gets displayed by IRIDA for the pipeline. The file is in the form of <code>key = value</code> entries (the Java <a href="https://en.wikipedia.org/wiki/.properties">.properties</a> format).  An example of this file would be:</p>
+<p>```properties
+pipeline.parameters.modal-title.readinfo=ReadInfo Pipeline Parameters
+workflow.READ_INFO.title=ReadInfo Pipeline
+pipeline.h1.ReadInfo=ReadInfo Pipeline
+pipeline.title.ReadInfo=Pipelines - ReadInfo
+workflow.READ_INFO.description=</p>
+<p>pipeline.parameters.readinfo.Grep1-4-invert=Grep1-4-invert
+pipeline.parameters.readinfo.Grep1-4-pattern=Grep1-4-pattern</p>
+<p>pipeline.parameters.readinfo.wc_gnu-5-include_header=wc_gnu-5-include_header
+```</p>
+<p>The entries like <code>workflow.READ_INFO.title=ReadInfo Pipeline</code> contain the text used to display the pipeline entry on the "Pipelines" page in the UI:</p>
+<p><img alt="example-plugin-pipeline.png" src="example-plugin-pipeline-2.png"/></p>
+<p>The entries like <code>pipeline.parameters.readinfo.Grep1-4-pattern=Grep1-4-pattern</code> contain information used to display the text when adjusting pipeline parameters:</p>
+<p><img alt="pipeline-parameters.png" src="pipeline-parameters-2.png"/></p>
+<p>The <code>Grep1-4-pattern</code> part corresponds to the <strong>name</strong> attribute under a <code>&lt;parameter&gt;</code> entry in the <strong>irida_workflow.xml</strong> file:</p>
+<p><code>xml
+&lt;parameter name="Grep1-4-pattern" defaultValue="^@"&gt;
+  &lt;toolParameter toolId="Grep1" parameterName="pattern"/&gt;
+&lt;/parameter&gt;</code></p>
+<h2 id="2-update-srcmainjavacacorefacilitybioinformaticsiridapluginsexamplepluginjava">2. Update <a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePlugin.java">src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePlugin.java</a></h2>
+<p>This is the main class you will need to modify for your pipeline. The class can be located in any package you wish, and can have any name you wish.  You will want to implement the two methods which are indicated as <strong>required</strong> in this file. You can also override the methods indicated as <strong>optional</strong> in the file for additional configuration.  You should have a class looking like:</p>
+<p>```java
+public class ExamplePlugin extends Plugin {</p>
+<pre><code>public static final AnalysisType MY_ANALYSIS_TYPE = new AnalysisType("MY_ANALYSIS_TYPE");
+
+public ExamplePlugin(PluginWrapper wrapper) {
+    super(wrapper);
+}
+
+@Extension
+public static class PluginInfo implements IridaPlugin {
+
+    /*** Required ***/
+
+    @Override
+    public AnalysisType getAnalysisType() {
+        return new AnalysisType("READ_INFO");
+    }
+
+    @Override
+    public UUID getDefaultWorkflowUUID() {
+        return UUID.fromString("79d90ca8-00ae-441b-b5c7-193c9e85a968");
+    }
+
+    /*** Optional ***/
+
+    @Override
+    public Optional&lt;Color&gt; getBackgroundColor() {
+        return Optional.of(Color.decode("#dd1c77"));
+    }
+
+    @Override
+    public Optional&lt;Color&gt; getTextColor() {
+        return Optional.of(Color.BLACK);
+    }
+
+    @Override
+    public Optional&lt;AnalysisSampleUpdater&gt; getUpdater(MetadataTemplateService metadataTemplateService,
+            SampleService sampleService, IridaWorkflowsService iridaWorkflowsService) throws IridaPluginException {
+        return Optional.of(new ExamplePluginUpdater(metadataTemplateService, sampleService, iridaWorkflowsService));
+    }
+}
+</code></pre>
+<p>}
+```</p>
+<p>The purpose of each method is as follows:</p>
+<ul>
+<li>
+<p><code>getAnalysisType()</code>: This returns an <code>AnalysisType</code> object which stores the type of analysis as a <code>String</code> (matches the <code>&lt;analysisType&gt;READ_INFO&lt;/analysisType&gt;</code> entry in the <strong>irida_workflow.xml</strong> file).</p>
+</li>
+<li>
+<p><code>getDefaultWorkflowUUID()</code>: This returns the id of the workflow (matching the <code>&lt;id&gt;79d90ca8-00ae-441b-b5c7-193c9e85a968&lt;/id&gt;</code> entry in the <strong>irida_workflow.xml</strong> file). Returning the appropriate value here is especially important if there are multiple versions of the same pipeline in this plugin (this will define the default or "latest" version).</p>
+</li>
+<li>
+<p><code>getBackgroundColor()</code> and <code>getTextColor()</code>: The background and text color to display in the UI (defaults to grey for background and black for text). This is <strong>optional</strong>. See example below: </p>
+</li>
+</ul>
+<p><img alt="example-plugin-pipeline.png" src="example-plugin-pipeline-3.png"/></p>
+<ul>
+<li><code>getUpdater()</code>: Gets an instance of a class used for post-processing on pipeline results (e.g., updating the IRIDA metadata). This is <strong>optional</strong>. Additional documentation about this class is described below.</li>
+</ul>
+<h2 id="3-optional-implement-an-updater-class">3. (Optional) Implement an <a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePluginUpdater.java">Updater</a> class</h2>
+<p>An <a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePluginUpdater.java">Updater</a> class is used to perform post-processing on the resulting files, primarily intended to write back pipeline results into the IRIDA metadata system. Please see the <a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePluginUpdater.java">ExamplePluginUpdater.java</a> for an example implementation, or the built-in implementations in <a href="https://github.com/phac-nml/irida/tree/development/src/main/java/ca/corefacility/bioinformatics/irida/pipeline/results/impl">https://github.com/phac-nml/irida/tree/development/src/main/java/ca/corefacility/bioinformatics/irida/pipeline/results/impl</a>. Implementing this class is optional for your pipeline.</p>
+<p>If you do implement this class, you will also want to make sure to update the <code>messages_en.properties</code> file with an entry like:</p>
+<p><code>properties
+workflow.label.share-analysis-samples.READ_INFO=Save sequence read information to Project Line List Metadata</code></p>
+<p>This contains the message to display asking the user if they wish to <strong>Save Results to Samples</strong> for their pipeline before launching the pipeline.</p>
+<p><img alt="example-plugin-save-results.png" src="example-plugin-save-results-1.png"/> </p>
+<h2 id="4-update-the-pomxml-file">4. Update the <a href="pom.xml">pom.xml</a> file</h2>
+<p>You will have to update the <code>pom.xml</code> file in order to set version information and other metadata about your pipeline.</p>
+<h3 id="41-update-the-maven-versioninfo">4.1. Update the Maven version/info</h3>
+<p>You will want to update the Maven version/information section for this particular plugin.  That is:</p>
+<p><code>xml
+&lt;groupId&gt;ca.corefacility.bioinformatics.irida.plugins&lt;/groupId&gt;
+&lt;artifactId&gt;example-plugin&lt;/artifactId&gt;
+&lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;</code></p>
+<p>Please see the <a href="https://maven.apache.org/guides/introduction/introduction-to-the-pom.html#Minimal_POM">Maven Documentation</a> for more details.</p>
+<h3 id="42-update-the-properties-sectionplugin-info">4.2. Update the <code>properties</code> section/plugin info</h3>
+<p>The <code>properties</code> section contains additional information you will have to update. In particular:</p>
+<p>```xml
+<plugin.id>example-plugin</plugin.id>
+<plugin.class>ca.corefacility.bioinformatics.irida.plugins.QIPhyloPlugin</plugin.class>
+<plugin.version>0.1.0</plugin.version>
+<plugin.provider>Aaron Petkau</plugin.provider>
+<plugin.dependencies/>
+<plugin.requires.runtime>1.0.0</plugin.requires.runtime></p>
+<p><irida.version.compiletime>0.23.0-SNAPSHOT</irida.version.compiletime>
+```</p>
+<p>The <code>&lt;plugin.*&gt;</code> entries contain information about your particular plugin as defined by <a href="https://pf4j.org/doc/getting-started.html">PF4J</a>.</p>
+<ul>
+<li><code>plugin.id</code>: An identifier for your plugin.</li>
+<li><code>plugin.class</code>: The fully-qualified name of the class implementing this plugin (in this case, the <a href="src/main/java/ca/corefacility/bioinformatics/irida/plugins/ExamplePlugin.java">ExamplePlugin.java</a> class).</li>
+<li><code>plugin.version</code>: A version number for your plugin.</li>
+<li><code>plugin.provider</code>: The provider of this plugin.</li>
+<li><code>plugin.dependencies</code>: Other IRIDA plugins this plugin depends on.</li>
+<li><code>plugin.requires.runtime</code>: The <strong>exact</strong> version of the IRIDA plugin API this plugin requires at runtime (stored in the <a href="https://github.com/phac-nml/irida/tree/development/src/main/java/ca/corefacility/bioinformatics/irida/plugins/IridaPlugin.java">IridaPlugin.java</a> interface). You normally don't need to update this unless the version is also updated in IRIDA. </li>
+</ul>
+<p>The <code>&lt;irida.version.compiletime&gt;</code> contains the exact IRIDA version this plugin will need to be compiled against (compile-time version).</p>
+<h2 id="5-build-and-test">5. Build and Test</h2>
+<p>Once you've made all the updates, you can try building and testing your plugin. To build your plugin, you can run:</p>
+<p><code>bash
+mvn clean package</code></p>
+<p>You should find your packaged plugin JAR file in <code>target/</code> (e.g., <code>target/example-plugin-0.1.0-SNAPSHOT.jar</code>).</p>
+<p>To test out this plugin, please copy to <code>/etc/irida/plugins</code> on a machine with IRIDA installed and restart IRIDA. Your plugin should show up in the <strong>Analyses &gt; Pipelines</strong> page in IRIDA.</p>
+<p><img alt="example-plugin-pipeline.png" src="example-plugin-pipeline-4.png"/></p>
+<p>You should also be able to see messages like below in the IRIDA log file when starting up:</p>
+<p><code>INFO org.pf4j.AbstractPluginManager:801 - Plugin 'example-plugin@0.1.0' resolved
+INFO org.pf4j.AbstractPluginManager:320 - Start plugin 'example-plugin@0.1.0'
+DEBUG ca.corefacility.bioinformatics.irida.config.services.IridaPluginConfig:45 - Loaded 1 valid pipeline plugins.</code></p>
+<h2 id="6-distribute">6. Distribute</h2>
+<p>Once you've successfully built your plugin, you can distribute the JAR file to other IRIDA users to install in their instances.</p>
+</body></html>

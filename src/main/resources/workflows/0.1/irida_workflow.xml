@@ -1,0 +1,263 @@
+<iridaWorkflow>
+  <id>8ede0691-cc85-4ac2-a423-f33a91dea7e4</id>
+  <name>QIPhylo</name>
+  <version>0.1</version>
+  <analysisType>QI_PHYLO</analysisType>
+  <inputs>
+    <sequenceReadsPaired>sequence_reads_paired</sequenceReadsPaired>
+    <reference>reference</reference>
+    <requiresSingleSample>false</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter defaultValue="" name="snippy-2-adv.bwaopt">
+      <toolParameter parameterName="adv.bwaopt" toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" />
+    </parameter>
+    <parameter defaultValue="60" name="snippy-2-adv.mapqual">
+      <toolParameter parameterName="adv.mapqual" toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" />
+    </parameter>
+    <parameter defaultValue="10" name="snippy-2-adv.mincov">
+      <toolParameter parameterName="adv.mincov" toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" />
+    </parameter>
+    <parameter defaultValue="0.9" name="snippy-2-adv.minfrac">
+      <toolParameter parameterName="adv.minfrac" toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" />
+    </parameter>
+    <parameter defaultValue="" name="snippy-2-adv.rgid">
+      <toolParameter parameterName="adv.rgid" toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" />
+    </parameter>
+    <parameter defaultValue="paired_collection" name="snippy-2-fastq_input.fastq_input_selector">
+      <toolParameter parameterName="fastq_input.fastq_input_selector" toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" />
+    </parameter>
+    <parameter defaultValue="false" name="snippy-3-is_reference">
+      <toolParameter parameterName="is_reference" toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy_core/3.2" />
+    </parameter>
+    <parameter defaultValue="100" name="iqtree-4-tree_parameters.tree_search.ninit">
+      <toolParameter parameterName="tree_parameters.tree_search.ninit" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.wbtl">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.wbtl" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.generating_random.rcat">
+      <toolParameter parameterName="tree_parameters.generating_random.rcat" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="nuclear" name="iqtree-4-modelling_parameters.automatic_model.msub">
+      <toolParameter parameterName="modelling_parameters.automatic_model.msub" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.generating_random.rbal">
+      <toolParameter parameterName="tree_parameters.generating_random.rbal" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.tree_topology.zb">
+      <toolParameter parameterName="tree_parameters.tree_topology.zb" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-bootstrap_parameters.nonparametric_bootstrap.bo">
+      <toolParameter parameterName="bootstrap_parameters.nonparametric_bootstrap.bo" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.rate_heterogeneity.wsr">
+      <toolParameter parameterName="modelling_parameters.rate_heterogeneity.wsr" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.generating_random.r">
+      <toolParameter parameterName="tree_parameters.generating_random.r" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.site_specific_frequency.fmax">
+      <toolParameter parameterName="modelling_parameters.site_specific_frequency.fmax" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.specifying_substitution.mwopt">
+      <toolParameter parameterName="modelling_parameters.specifying_substitution.mwopt" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.computing_robinson_foulds.rf_adj">
+      <toolParameter parameterName="tree_parameters.computing_robinson_foulds.rf_adj" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.automatic_model.mrate">
+      <toolParameter parameterName="modelling_parameters.automatic_model.mrate" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.tree_topology.zw">
+      <toolParameter parameterName="tree_parameters.tree_topology.zw" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.automatic_model.cond_model.m">
+      <toolParameter parameterName="modelling_parameters.automatic_model.cond_model.m" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.generating_random.rlen">
+      <toolParameter parameterName="tree_parameters.generating_random.rlen" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.wbt">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.wbt" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="10" name="iqtree-4-modelling_parameters.automatic_model.cmax">
+      <toolParameter parameterName="modelling_parameters.automatic_model.cmax" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.automatic_model.mset">
+      <toolParameter parameterName="modelling_parameters.automatic_model.mset" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.rate_heterogeneity.a">
+      <toolParameter parameterName="modelling_parameters.rate_heterogeneity.a" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.rate_heterogeneity.i">
+      <toolParameter parameterName="modelling_parameters.rate_heterogeneity.i" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.site_specific_frequency.fs">
+      <toolParameter parameterName="modelling_parameters.site_specific_frequency.fs" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="0.5" name="iqtree-4-tree_parameters.tree_search.pers">
+      <toolParameter parameterName="tree_parameters.tree_search.pers" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.constructing_consensus.suptag">
+      <toolParameter parameterName="tree_parameters.constructing_consensus.suptag" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.rate_heterogeneity.opt_gamma_inv">
+      <toolParameter parameterName="modelling_parameters.rate_heterogeneity.opt_gamma_inv" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-miscellaneous_options.fconst">
+      <toolParameter parameterName="miscellaneous_options.fconst" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="AIC" name="iqtree-4-modelling_parameters.automatic_model.merit">
+      <toolParameter parameterName="modelling_parameters.automatic_model.merit" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.automatic_model.rcluster">
+      <toolParameter parameterName="modelling_parameters.automatic_model.rcluster" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.tree_search.n">
+      <toolParameter parameterName="tree_parameters.tree_search.n" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.generating_random.rcsg">
+      <toolParameter parameterName="tree_parameters.generating_random.rcsg" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.computing_robinson_foulds.rf_all">
+      <toolParameter parameterName="tree_parameters.computing_robinson_foulds.rf_all" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-bootstrap_parameters.nonparametric_bootstrap.bc">
+      <toolParameter parameterName="bootstrap_parameters.nonparametric_bootstrap.bc" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.tree_topology.au">
+      <toolParameter parameterName="tree_parameters.tree_topology.au" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="20" name="iqtree-4-tree_parameters.tree_search.ntop">
+      <toolParameter parameterName="tree_parameters.tree_search.ntop" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.bb">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.bb" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.partition_model.spp">
+      <toolParameter parameterName="modelling_parameters.partition_model.spp" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.rate_heterogeneity.gmedian">
+      <toolParameter parameterName="modelling_parameters.rate_heterogeneity.gmedian" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-likelihood_mapping.wql">
+      <toolParameter parameterName="likelihood_mapping.wql" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.automatic_model.mfreq">
+      <toolParameter parameterName="modelling_parameters.automatic_model.mfreq" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.constructing_consensus.bi">
+      <toolParameter parameterName="tree_parameters.constructing_consensus.bi" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="0.99" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.bcor">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.bcor" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="2" name="iqtree-4-modelling_parameters.automatic_model.cmin">
+      <toolParameter parameterName="modelling_parameters.automatic_model.cmin" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="100" name="iqtree-4-tree_parameters.tree_search.nstop">
+      <toolParameter parameterName="tree_parameters.tree_search.nstop" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="5" name="iqtree-4-tree_parameters.tree_search.nbest">
+      <toolParameter parameterName="tree_parameters.tree_search.nbest" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.tree_search.allnni">
+      <toolParameter parameterName="tree_parameters.tree_search.allnni" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.constructing_consensus.con">
+      <toolParameter parameterName="tree_parameters.constructing_consensus.con" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.generating_random.ru">
+      <toolParameter parameterName="tree_parameters.generating_random.ru" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.constructing_consensus.net">
+      <toolParameter parameterName="tree_parameters.constructing_consensus.net" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.bspec">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.bspec" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.single_branch.alrt">
+      <toolParameter parameterName="tree_parameters.single_branch.alrt" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="6" name="iqtree-4-tree_parameters.tree_search.sprrad">
+      <toolParameter parameterName="tree_parameters.tree_search.sprrad" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="0.0" name="iqtree-4-tree_parameters.constructing_consensus.minsup">
+      <toolParameter parameterName="tree_parameters.constructing_consensus.minsup" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="100" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.nstep">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.nstep" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="0.5" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.beps">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.beps" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.automatic_model.mtree">
+      <toolParameter parameterName="modelling_parameters.automatic_model.mtree" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-bootstrap_parameters.nonparametric_bootstrap.b">
+      <toolParameter parameterName="bootstrap_parameters.nonparametric_bootstrap.b" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.single_branch.abayes">
+      <toolParameter parameterName="tree_parameters.single_branch.abayes" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-tree_parameters.single_branch.lbp">
+      <toolParameter parameterName="tree_parameters.single_branch.lbp" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.bnni">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.bnni" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="DNA" name="iqtree-4-general_options.st">
+      <toolParameter parameterName="general_options.st" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-tree_parameters.tree_search.djc">
+      <toolParameter parameterName="tree_parameters.tree_search.djc" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-modelling_parameters.automatic_model.madd">
+      <toolParameter parameterName="modelling_parameters.automatic_model.madd" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-general_options.seed">
+      <toolParameter parameterName="general_options.seed" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="" name="iqtree-4-likelihood_mapping.lmap">
+      <toolParameter parameterName="likelihood_mapping.lmap" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-general_options.keep_ident">
+      <toolParameter parameterName="general_options.keep_ident" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-modelling_parameters.automatic_model.cond_model.opt_custommodel">
+      <toolParameter parameterName="modelling_parameters.automatic_model.cond_model.opt_custommodel" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="1000" name="iqtree-4-bootstrap_parameters.ultrafast_bootstrap.nm">
+      <toolParameter parameterName="bootstrap_parameters.ultrafast_bootstrap.nm" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+    <parameter defaultValue="false" name="iqtree-4-general_options.safe">
+      <toolParameter parameterName="general_options.safe" toolId="testtoolshed.g2.bx.psu.edu/repos/leomrtns/iqtree/iqtree/1.6.10" />
+    </parameter>
+  </parameters>
+  <outputs>
+    <output fileName="core.fasta" name="core.fasta" />
+    <output fileName="core_sum.tsv" name="core_sum.tsv" />
+    <output fileName="core.tsv" name="core.tsv" />
+    <output fileName="bionj.newick" name="bionj.newick" />
+    <output fileName="contree.newick" name="contree.newick" />
+    <output fileName="iqtree.txt" name="iqtree.txt" />
+    <output fileName="mldist.txt" name="mldist.txt" />
+    <output fileName="splits.nex" name="splits.nex" />
+    <output fileName="tree.newick" name="tree" />
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>snippy</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>82f2b6f20fa2</revision>
+    </repository>
+    <repository>
+      <name>iqtree</name>
+      <owner>leomrtns</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>37e42abdce08</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>
